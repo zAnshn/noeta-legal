@@ -1,0 +1,417 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Noeta — Datenschutz &amp; Impressum</title>
+<meta name="description" content="Datenschutzerklärung und Impressum der App Noeta. Noeta erhebt keine personenbezogenen Daten.">
+<meta name="robots" content="index, follow">
+<style>
+  /* Nocturne — dieselbe Palette wie die App. Hell ist die Grundfassung,
+     dunkel folgt der Systemeinstellung. Keine externen Abhängigkeiten:
+     die Seite muss auch dann laden, wenn sonst nichts erreichbar ist. */
+  :root {
+    --ground:  #f4f4f7;
+    --surface: #ffffff;
+    --border:  #e0e0e8;
+    --text:    #1a1b26;
+    --muted:   #5c5f72;
+    --faint:   #85889c;
+    --accent:  #6b5cc4;
+    --accent-soft: #efedfa;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --ground:  #161826;
+      --surface: #232532;
+      --border:  #33364a;
+      --text:    #eceef7;
+      --muted:   #a9adc2;
+      --faint:   #7b7f96;
+      --accent:  #9184d9;
+      --accent-soft: #262a40;
+    }
+  }
+  :root[data-theme="dark"] {
+    --ground:  #161826;
+    --surface: #232532;
+    --border:  #33364a;
+    --text:    #eceef7;
+    --muted:   #a9adc2;
+    --faint:   #7b7f96;
+    --accent:  #9184d9;
+    --accent-soft: #262a40;
+  }
+
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0;
+    background: var(--ground);
+    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+                 "Helvetica Neue", Arial, sans-serif;
+    font-size: 17px;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: 44rem; margin: 0 auto; padding: 2rem 1.25rem 5rem; }
+
+  header { padding-top: 1.5rem; }
+  .mark {
+    display: flex; align-items: center; gap: .6rem;
+    font-size: .82rem; letter-spacing: .22em; text-transform: uppercase;
+    color: var(--faint);
+  }
+  .mark svg { flex: none; }
+
+  h1 { font-size: 1.9rem; line-height: 1.25; font-weight: 500; margin: 1.6rem 0 .4rem; }
+  h2 {
+    font-size: 1.25rem; font-weight: 500; margin: 2.6rem 0 .7rem;
+    padding-top: 1.6rem; border-top: 1px solid var(--border);
+  }
+  h2:first-of-type { border-top: 0; padding-top: 0; }
+  h3 { font-size: 1rem; font-weight: 600; margin: 1.6rem 0 .4rem; }
+  p, li { color: var(--muted); }
+  p { margin: .7rem 0; }
+  ul, ol { padding-left: 1.3rem; margin: .7rem 0; }
+  li { margin: .45rem 0; }
+  strong { color: var(--text); font-weight: 600; }
+  a { color: var(--accent); text-decoration-thickness: 1px; text-underline-offset: 2px; }
+
+  .stand { color: var(--faint); font-size: .9rem; margin-bottom: 2rem; }
+
+  /* Die Kernaussage steht heraus — sie ist bei dieser App nicht Beiwerk. */
+  .kurz {
+    background: var(--accent-soft);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 1.1rem 1.3rem;
+    margin: 1.6rem 0 2rem;
+  }
+  .kurz p { margin: 0; color: var(--text); }
+
+  .adresse {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 1.1rem 1.3rem;
+    font-style: normal;
+    line-height: 1.75;
+    color: var(--muted);
+  }
+
+  nav.tabs {
+    display: flex; flex-wrap: wrap; gap: .5rem;
+    margin: 1.6rem 0 2.2rem;
+  }
+  nav.tabs a, .langbtn {
+    font: inherit; font-size: .9rem;
+    color: var(--muted);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    padding: .35rem 1.05rem;
+    text-decoration: none;
+    cursor: pointer;
+    /* 44 px — dasselbe Mass, das für die App gilt. Eine Rechtsseite wird auf
+       dem Telefon gelesen, und ein Knopf, den man dreimal treffen muss, ist
+       auch hier ein Fehler. */
+    min-height: 44px;
+    display: inline-flex; align-items: center;
+  }
+  nav.tabs a:hover, .langbtn:hover { border-color: var(--accent); color: var(--text); }
+  .langbtn[aria-pressed="true"] {
+    border-color: var(--accent); color: var(--accent);
+    background: var(--accent-soft);
+  }
+  .langswitch { margin-left: auto; display: flex; gap: .4rem; }
+
+  footer {
+    margin-top: 3.5rem; padding-top: 1.4rem;
+    border-top: 1px solid var(--border);
+    color: var(--faint); font-size: .88rem;
+  }
+
+  /* Sprachumschaltung. Ohne JavaScript sind BEIDE Fassungen sichtbar — eine
+     Rechtsseite, die ohne Skript leer bleibt, wäre wertlos. */
+  [data-lang] { display: none; }
+  html[lang="de"] [data-lang="de"],
+  html[lang="en"] [data-lang="en"] { display: block; }
+  li[data-lang], span[data-lang] { display: none; }
+  html[lang="de"] li[data-lang="de"], html[lang="en"] li[data-lang="en"] { display: list-item; }
+  html[lang="de"] span[data-lang="de"], html[lang="en"] span[data-lang="en"] { display: inline; }
+  .nojs [data-lang] { display: block !important; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <div class="mark">
+    <svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M2 12c1.6-6 3-6 4.2 0 1.2 6 2.4 4 3.4-1 1-5 2 1 2.6 2.5.6 1.5 1.4.8 2.4.3 1-.5 4.6-.4 7.4-.4"
+            fill="none" stroke="#9184d9" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+    Noeta
+  </div>
+
+  <h1>
+    <span data-lang="de">Datenschutz &amp; Impressum</span>
+    <span data-lang="en">Privacy &amp; Legal Notice</span>
+  </h1>
+  <div class="stand">
+    <span data-lang="de">Stand: 10. September 2026</span>
+    <span data-lang="en">Last updated: 10 September 2026</span>
+  </div>
+
+  <nav class="tabs">
+    <a href="#datenschutz"><span data-lang="de">Datenschutz</span><span data-lang="en">Privacy</span></a>
+    <a href="#impressum"><span data-lang="de">Impressum</span><span data-lang="en">Legal notice</span></a>
+    <a href="#kontakt"><span data-lang="de">Kontakt</span><span data-lang="en">Contact</span></a>
+    <span class="langswitch">
+      <button class="langbtn" data-set="de" aria-pressed="true">Deutsch</button>
+      <button class="langbtn" data-set="en" aria-pressed="false">English</button>
+    </span>
+  </nav>
+</header>
+
+<main>
+
+<!-- ══════════════════════════ DATENSCHUTZ ══════════════════════════ -->
+<section id="datenschutz">
+
+<div data-lang="de">
+  <h2>Datenschutzerklärung</h2>
+
+  <div class="kurz">
+    <p><strong>Noeta erhebt keine personenbezogenen Daten.</strong> Es gibt kein
+    Nutzerkonto, keine Registrierung, keine Server des Anbieters, keine
+    Analyse-Werkzeuge, keine Werbung und kein Tracking. Alles, was du sprichst,
+    tippst oder scannst, bleibt auf deinem Gerät.</p>
+  </div>
+
+  <h3>Was auf dem Gerät passiert</h3>
+  <ul>
+    <li><strong>Spracherkennung</strong> läuft mit Apples On-Device-Spracherkennung.
+      Es wird kein Audio an einen Server gesendet.</li>
+    <li><strong>Die Zerlegung in Aufgaben, Termine und Einträge</strong> läuft mit
+      einem Sprachmodell, das in der App enthalten ist. Auch dabei verlässt kein Text
+      das Gerät.</li>
+    <li><strong>Gespeichert</strong> wird in einer lokalen Datenbank auf deinem Gerät.
+      Sensible Einträge (Konto, Gesundheit, Versicherung) werden zusätzlich
+      verschlüsselt; der Schlüssel liegt im Schlüsselbund deines Geräts und ist an
+      dieses Gerät gebunden. Die Datenbank ist vom iCloud-Backup ausgenommen.</li>
+  </ul>
+
+  <h3>Was die App verlässt — und wohin</h3>
+  <p>An den Anbieter wird nichts gesendet. Es gibt drei Fälle, in denen Daten die App
+  verlassen, und alle drei bleiben auf deinem Gerät oder in deinen eigenen
+  Apple-Diensten:</p>
+  <ol>
+    <li><strong>Apple Erinnerungen und Kalender.</strong> Erkannte Aufgaben und Termine
+      trägt Noeta auf deinen Wunsch dort ein. Noeta bevorzugt dafür einen
+      <strong>lokalen</strong> Kalender, der nicht mit iCloud abgeglichen wird. Bietet
+      dein Gerät keine lokale Kalenderquelle an, verwendet Noeta das Kalenderkonto, das
+      du ohnehin eingerichtet hast — dann gelten dessen Synchronisierungs-Einstellungen.
+      Einträge, die Noeta als <strong>sensibel erkennt</strong> (Konto, Gesundheit,
+      Versicherung), werden in keinem Fall übertragen.</li>
+    <li><strong>Mitteilungen.</strong> Erinnerungen an Fristen werden als lokale
+      Mitteilungen auf deinem Gerät geplant. Sie enthalten bewusst keine sensiblen
+      Bezeichnungen.</li>
+    <li><strong>Export und Teilen.</strong> Wenn du den Export benutzt oder Inhalte
+      teilst, entscheidest du, wohin sie gehen. Ab diesem Moment gilt die
+      Datenschutzerklärung des Ziels.</li>
+  </ol>
+
+  <h3>Berechtigungen</h3>
+  <p>Mikrofon und Spracherkennung (Aufnahme), Kamera (Dokumente scannen), Kalender und
+  Erinnerungen (Einträge anlegen), Face ID beziehungsweise Gerätecode (App entsperren),
+  Mitteilungen (Fristerinnerungen). Jede Berechtigung wird nur für den genannten Zweck
+  verwendet, und die App funktioniert ohne sie eingeschränkt weiter.</p>
+
+  <h3>Diagnose</h3>
+  <p>Noeta führt eine reine Zähl-Statistik über die Verarbeitung (Dauer sowie Zeichen-
+  und Eintragszahl). Sie enthält keine Inhalte, verlässt das Gerät nicht und ist in den
+  Einstellungen der App einsehbar.</p>
+
+  <h3>Deine Rechte</h3>
+  <p>Da keine personenbezogenen Daten verarbeitet werden, gibt es beim Anbieter nichts,
+  worüber Auskunft erteilt oder was gelöscht werden könnte. Alle Daten liegen bei dir:
+  Du löschst sie, indem du Einträge in der App entfernst oder die App deinstallierst.
+  Für Rechte gegenüber Apple (Kauf im App Store, Abrechnung) gilt Apples
+  Datenschutzerklärung.</p>
+  <p>Unabhängig davon steht dir ein Beschwerderecht bei einer Datenschutz-Aufsichts&shy;behörde
+  zu.</p>
+
+  <h3>Kinder</h3>
+  <p>Noeta richtet sich nicht an Kinder unter 16 Jahren.</p>
+
+  <h3>Änderungen</h3>
+  <p>Änderungen dieser Erklärung werden auf dieser Seite veröffentlicht.</p>
+</div>
+
+<div data-lang="en">
+  <h2>Privacy Policy</h2>
+
+  <div class="kurz">
+    <p><strong>Noeta collects no personal data.</strong> There is no account, no
+    sign-up, no server operated by the provider, no analytics, no advertising and no
+    tracking. Everything you speak, type or scan stays on your device.</p>
+  </div>
+
+  <h3>What happens on your device</h3>
+  <ul>
+    <li><strong>Speech recognition</strong> uses Apple's on-device recognition. No audio
+      is sent to a server.</li>
+    <li><strong>Turning what you said into tasks, appointments and entries</strong> uses
+      a language model that ships inside the app. No text leaves the device for this
+      either.</li>
+    <li><strong>Storage</strong> is a local database on your device. Sensitive entries
+      (account, health, insurance) are additionally encrypted; the key lives in your
+      device's keychain and is bound to that device. The database is excluded from
+      iCloud backup.</li>
+  </ul>
+
+  <h3>What leaves the app — and where it goes</h3>
+  <p>Nothing is sent to the provider. There are three cases in which data leaves the
+  app, and all three stay on your device or in your own Apple services:</p>
+  <ol>
+    <li><strong>Apple Reminders and Calendar.</strong> Recognized tasks and appointments
+      are added there at your request. Noeta prefers a <strong>local</strong> calendar,
+      which is not synced to iCloud. If your device offers no local calendar source,
+      Noeta uses the calendar account you already have — in which case that account's
+      sync settings apply. Entries Noeta <strong>recognizes as sensitive</strong>
+      (account, health, insurance) are never transferred at all.</li>
+    <li><strong>Notifications.</strong> Deadline reminders are scheduled as local
+      notifications on your device. They deliberately carry no sensitive names.</li>
+    <li><strong>Export and sharing.</strong> If you use the export or share content, you
+      choose where it goes. From that moment the destination's privacy policy
+      applies.</li>
+  </ol>
+
+  <h3>Permissions</h3>
+  <p>Microphone and speech recognition (recording), camera (scanning documents),
+  calendar and reminders (creating entries), Face ID or device passcode (unlocking),
+  notifications (deadline reminders). Each permission is used only for the stated
+  purpose, and the app keeps working — with reduced function — without it.</p>
+
+  <h3>Diagnostics</h3>
+  <p>Noeta keeps a counting-only statistic about processing (duration, character and
+  entry counts). It contains no content, never leaves the device, and is visible in the
+  app's settings.</p>
+
+  <h3>Your rights</h3>
+  <p>Because no personal data is processed, there is nothing at the provider's end to
+  disclose or delete. All data is yours: remove entries in the app, or delete the app.
+  For rights concerning Apple (App Store purchase, billing), Apple's privacy policy
+  applies.</p>
+  <p>Independently of this, you have the right to lodge a complaint with a data
+  protection supervisory authority.</p>
+
+  <h3>Children</h3>
+  <p>Noeta is not directed at children under 16.</p>
+
+  <h3>Changes</h3>
+  <p>Changes to this policy will be published on this page.</p>
+</div>
+
+</section>
+
+<!-- ══════════════════════════ IMPRESSUM ══════════════════════════ -->
+<section id="impressum">
+
+<div data-lang="de">
+  <h2>Impressum</h2>
+  <p>Angaben gemäß § 5 Digitale-Dienste-Gesetz (DDG).</p>
+
+  <address class="adresse">
+    Eray Fedai<br>
+    c/o flexdienst – #21267<br>
+    Kurt-Schumacher-Straße 74<br>
+    67663 Kaiserslautern<br>
+    Deutschland
+  </address>
+
+  <h3 id="kontakt">Kontakt</h3>
+  <p>E-Mail: <a href="mailto:noeta@mailbox.org">noeta@mailbox.org</a></p>
+
+  <h3>Verantwortlich für den Datenschutz</h3>
+  <p>Verantwortlicher im Sinne der Datenschutz-Grundverordnung ist die oben genannte
+  Person unter der oben genannten Anschrift.</p>
+
+  <h3>Verbraucherstreitbeilegung</h3>
+  <p>Ich bin nicht bereit und nicht verpflichtet, an Streitbeilegungsverfahren vor einer
+  Verbraucherschlichtungsstelle teilzunehmen.</p>
+</div>
+
+<div data-lang="en">
+  <h2>Legal Notice</h2>
+  <p>Information pursuant to § 5 of the German Digital Services Act (DDG).</p>
+
+  <address class="adresse">
+    Eray Fedai<br>
+    c/o flexdienst – #21267<br>
+    Kurt-Schumacher-Straße 74<br>
+    67663 Kaiserslautern<br>
+    Germany
+  </address>
+
+  <h3>Contact</h3>
+  <p>Email: <a href="mailto:noeta@mailbox.org">noeta@mailbox.org</a></p>
+
+  <h3>Responsible for data protection</h3>
+  <p>The controller within the meaning of the GDPR is the person named above, at the
+  address given above.</p>
+
+  <h3>Consumer dispute resolution</h3>
+  <p>I am neither willing nor obliged to participate in dispute resolution proceedings
+  before a consumer arbitration board.</p>
+</div>
+
+</section>
+
+</main>
+
+<footer>
+  <p>
+    <span data-lang="de">Noeta ist eine On-Device-App. Sie hat keinen Netzwerkzugriff.</span>
+    <span data-lang="en">Noeta is an on-device app. It has no network access.</span>
+  </p>
+</footer>
+
+</div>
+
+<script>
+  // Sprache umschalten. Die Einstellung bleibt im Browser des Lesers und
+  // verlässt ihn nie — sie wird nirgends hin gemeldet.
+  (function () {
+    var root = document.documentElement;
+    var btns = document.querySelectorAll('.langbtn');
+
+    function setLang(l) {
+      root.setAttribute('lang', l);
+      btns.forEach(function (b) {
+        b.setAttribute('aria-pressed', String(b.dataset.set === l));
+      });
+      try { localStorage.setItem('noeta-legal-lang', l); } catch (e) {}
+    }
+
+    var gespeichert = null;
+    try { gespeichert = localStorage.getItem('noeta-legal-lang'); } catch (e) {}
+    if (gespeichert === 'de' || gespeichert === 'en') {
+      setLang(gespeichert);
+    } else if ((navigator.language || '').slice(0, 2).toLowerCase() !== 'de') {
+      // Wer kein Deutsch spricht, soll nicht erst suchen müssen.
+      setLang('en');
+    }
+
+    btns.forEach(function (b) {
+      b.addEventListener('click', function () { setLang(b.dataset.set); });
+    });
+  })();
+</script>
+<noscript><style>[data-lang]{display:block !important}</style></noscript>
+
+</body>
+</html>
